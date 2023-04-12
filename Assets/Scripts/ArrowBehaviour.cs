@@ -5,7 +5,7 @@ using UnityEngine;
 public class ArrowBehaviour : MonoBehaviour
 {
     public float mov_speed = 20.0f;
-    public float rot_speed = 45f / 1f;
+    public float rot_speed = 90f / 1f;
     public bool mouseControl = true;
     private float timeSinceInstanciate = 0;
     public Rigidbody2D rb;
@@ -75,6 +75,20 @@ public class ArrowBehaviour : MonoBehaviour
 
         }
 
+        if (Input.GetKey(KeyCode.Space))
+        {
+            // float two = DateTime.UtcNow.Ticks;// - timeSinceInstanciate; 
+            // two = two - timeSinceInstanciate;
+
+            if ((Time.time - timeSinceInstanciate) > 0.2 || timeSinceInstanciate == 0)
+            {
+                GameObject e = Instantiate(Resources.Load("Prefabs/Egg") as GameObject);
+                timeSinceInstanciate = Time.time;
+                e.transform.localPosition = transform.localPosition;
+                e.transform.rotation = transform.rotation;
+                mGameGameController.totalEggs++;
+                // Debug.Log("Spawn Eggs:" + e.transform.localPosition);
+            }
 
 
 
@@ -82,5 +96,6 @@ public class ArrowBehaviour : MonoBehaviour
 
 
 
+        }
     }
 }
