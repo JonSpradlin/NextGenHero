@@ -11,11 +11,13 @@ public class GameController : MonoBehaviour
     public int planesDestroyed = 0;
     public int totalEggs = 0;
     private int numberOfPlanes = 0;
-    public Text canvasObject = null;
+    public Text planesDestroyedtxt = null;
+    public Text totalEggstxt = null;
+    public Text totalPlanestxt = null;
     // Start is called before the first frame update
     void Start()
     {
-        canvasObject = gameObject.GetComponent<Text>();
+        //canvasObject = gameObject.GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -36,6 +38,10 @@ public class GameController : MonoBehaviour
             e.transform.localPosition = pos;
             ++numberOfPlanes;
         }
+
+        totalEggstxt.text = "Total Eggs: " + totalEggs;
+        totalPlanestxt.text = "total Planes: " + maxPlanes;
+
     }
 
     public void EnemyDestroyed()
@@ -43,6 +49,7 @@ public class GameController : MonoBehaviour
         Debug.Log("Enemy Destroyed");
         numberOfPlanes--;
         planesDestroyed++;
+        planesDestroyedtxt.text = "Planes Destroyed by Arrow: " + planesDestroyed; 
     }
 
 

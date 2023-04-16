@@ -9,13 +9,13 @@ public class EggBehaviour : MonoBehaviour
     public float eggSpeed = 40f;
     private bool collided = false;
     public float mainCam;
-    private GameController eGameGameController;
+    private GameController mGameGameController;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCam = Camera.main.orthographicSize;
-        eGameGameController = FindObjectOfType<GameController>();
+        mGameGameController = FindObjectOfType<GameController>();
     }
 
     // Update is called once per frame
@@ -27,11 +27,14 @@ public class EggBehaviour : MonoBehaviour
         if (outOfBounds())
         {
             Destroy(gameObject);
+            mGameGameController.totalEggs--;
             Debug.Log("(Out of bounds) Destroyed: Egg");
+
         }
         if (collided)
         {
             Destroy(gameObject);
+            mGameGameController.totalEggs--;
             Debug.Log("(Object Collision) Destroyed: Egg");
         }
     }
@@ -65,12 +68,12 @@ public class EggBehaviour : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log("Egg collision Object:" + collision.gameObject.name);
-        if (collision.gameObject.name == "Enemy(Clone)")
+        if (collision.gameObject.name == "PlaneRed(Clone)")
         {
             Debug.Log("Egg entered enemy collider");
-            Debug.Log("----Calling eggHit()");
+            Debug.Log("----Calling hit()");
             collided = true;
-            collision.gameObject.GetComponent<EnemyBehavior>().hit();
+            collision.gameObject.GetComponent<EnemyBehaviour>().hit();
         }
         //Destroy(collision.gameObject);
         //mGameGameController.EnemyDestroyed();

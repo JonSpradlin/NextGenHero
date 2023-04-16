@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ArrowBehaviour : MonoBehaviour
 {
     public float mov_speed = 20.0f;
-    public float rot_speed = 90f / 1f;
+    public float rot_speed = 45f / 1f;
     public bool mouseControl = true;
     private float timeSinceInstanciate = 0;
     public Rigidbody2D rb;
     private GameController mGameGameController;
+    public Text controlMode = null;
 
     // Start is called before the first frame update
     void Start()
@@ -30,12 +32,13 @@ public class ArrowBehaviour : MonoBehaviour
             {
                 mouseControl = false;
                 mGameGameController.mouseControl = false;
+                controlMode.text = "Control Mode: WASD";
             }
             else
             {
                 mouseControl = true;
                 mGameGameController.mouseControl = true;
-
+                controlMode.text = "Control Mode: Mouse";
             }
         }
 
@@ -89,13 +92,16 @@ public class ArrowBehaviour : MonoBehaviour
                 mGameGameController.totalEggs++;
                 // Debug.Log("Spawn Eggs:" + e.transform.localPosition);
             }
-
-
-
-
-
-
-
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Debug.Log("Hero collision Object:" + collision.gameObject.name);
+        if (collision.gameObject.name == "PlaneRed(Clone)")
+        {
+            Debug.Log("Hero entered enemy collider");
+            Destroy(collision.gameObject);
+            mGameGameController.EnemyDestroyed();
         }
     }
 }

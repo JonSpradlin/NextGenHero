@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TerrainTools;
 
-public class EnemyBehavior : MonoBehaviour
+public class EnemyBehaviour : MonoBehaviour
 {
 
     public float hits = 4;
@@ -20,7 +20,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public void hit()
     {
-        Debug.Log("Entering eggHit hits = " + hits);
+        Debug.Log("Entering hits = " + hits);
         hits--;
 
         if (hits > 0)
@@ -42,4 +42,6 @@ public class EnemyBehavior : MonoBehaviour
         Debug.Log("leaving eggHit");
 
     }
+
+  
 }
