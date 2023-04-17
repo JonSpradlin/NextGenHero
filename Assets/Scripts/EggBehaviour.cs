@@ -75,6 +75,17 @@ public class EggBehaviour : MonoBehaviour
             collided = true;
             collision.gameObject.GetComponent<EnemyBehaviour>().hit();
         }
+        if (collision.gameObject.tag == "Waypoint")
+        {
+            Debug.Log("Egg entered enemy collider");
+            Debug.Log("----Calling hit()");
+            collided = true;
+            collision.gameObject.GetComponent<waypointBehaviour>().hit();
+        }
+
+
+
+
         //Destroy(collision.gameObject);
         //mGameGameController.EnemyDestroyed();
 
